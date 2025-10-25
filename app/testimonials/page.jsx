@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+"use client";
 
+import { motion } from "framer-motion";
 import TestimonialSlider from "../../components/TestimonialSlider";
 import { fadeIn } from "../../variants";
 
@@ -16,7 +17,6 @@ const Testimonials = () => {
         >
           What clients <span className="text-accent">say.</span>
         </motion.h2>
-
         {/* slider */}
         <motion.div
           variants={fadeIn("up", 0.4)}

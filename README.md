@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-# Modern Portfolio using Next.js and Framer Motion
+# Modern Portfolio using Next.js 16 and Framer Motion
 
 ![Modern Portfolio using Next.js and Framer Motion](/.github/images/img_main.png "Modern Portfolio using Next.js and Framer Motion")
 
@@ -107,25 +107,24 @@ Useful resources and dependencies that are used in Modern Portfolio.
 
 ### Production Dependencies
 
-- [@next/font](https://www.npmjs.com/package/@next/font): ^13.4.4
-- [framer-motion](https://www.npmjs.com/package/framer-motion): ^10.12.16
-- [next](https://www.npmjs.com/package/next): 13.4.3
-- [react](https://www.npmjs.com/package/react): 18.2.0
-- [react-countup](https://www.npmjs.com/package/react-countup): ^6.4.2
-- [react-dom](https://www.npmjs.com/package/react-dom): 18.2.0
-- [react-icons](https://www.npmjs.com/package/react-icons): ^4.8.0
-- [react-tsparticles](https://www.npmjs.com/package/react-tsparticles): ^2.9.3
-- [swiper](https://www.npmjs.com/package/swiper): ^9.4.0
-- [tailwind-scrollbar](https://www.npmjs.com/package/tailwind-scrollbar): ^3.0.4
-- [tsparticles](https://www.npmjs.com/package/tsparticles): ^2.9.3
+- [framer-motion](https://www.npmjs.com/package/framer-motion): ^11.0.0
+- [next](https://www.npmjs.com/package/next): ^16.0.0
+- [react](https://www.npmjs.com/package/react): ^19.0.0
+- [react-countup](https://www.npmjs.com/package/react-countup): ^6.5.0
+- [react-dom](https://www.npmjs.com/package/react-dom): ^19.0.0
+- [react-icons](https://www.npmjs.com/package/react-icons): ^5.0.0
+- [react-tsparticles](https://www.npmjs.com/package/react-tsparticles): ^2.12.0
+- [swiper](https://www.npmjs.com/package/swiper): ^11.0.0
+- [tailwind-scrollbar](https://www.npmjs.com/package/tailwind-scrollbar): ^3.1.0
+- [tsparticles](https://www.npmjs.com/package/tsparticles): ^2.12.0
 
 ### Development Dependencies
 
-- [autoprefixer](https://www.npmjs.com/package/autoprefixer): ^10.4.14
-- [eslint](https://www.npmjs.com/package/eslint): 8.41.0
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 13.4.3
-- [postcss](https://www.npmjs.com/package/postcss): ^8.4.23
-- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.3.2
+- [autoprefixer](https://www.npmjs.com/package/autoprefixer): ^10.4.19
+- [eslint](https://www.npmjs.com/package/eslint): ^9.0.0
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): ^16.0.0
+- [postcss](https://www.npmjs.com/package/postcss): ^8.4.38
+- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.0
 
 ## :coffee: Buy Me a Coffee
 

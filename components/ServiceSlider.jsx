@@ -1,3 +1,5 @@
+"use client";
+
 import {
   RxCrop,
   RxPencil2,
@@ -6,7 +8,7 @@ import {
   RxRocket,
   RxArrowTopRight,
 } from "react-icons/rx";
-import { FreeMode, Pagination } from "swiper";
+import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
