@@ -22,11 +22,19 @@ const Home = () => {
             exit="hidden"
             className="h1"
           >
-            Transforming Ideas <br /> Into{" "}
-            <span className="text-accent">Digital Reality</span>
+            Maxime <span className="text-accent">Morellon</span>
           </motion.h1>
 
           {/* subtitle */}
+          <motion.h2
+            variants={fadeIn("down", 0.3)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            className="h3 mb-4"
+          >
+            Développeur Full-Stack
+          </motion.h2>
           <motion.p
             variants={fadeIn("down", 0.3)}
             initial="hidden"
@@ -34,11 +42,25 @@ const Home = () => {
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
           >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-            exercitationem harum, quia nulla temporibus deleniti libero veniam
-            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
-            quod laudantium debitis.
+            7 ans d'expérience en développement web, spécialisé en React, Next.js et Java.
+            Expert en développement front-end et back-end, avec une solide expérience en architecture logicielle
+            et gestion de projet technique.
           </motion.p>
+          <motion.div
+            variants={fadeIn("up", 0.5)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="w-full h-full max-w-[737px] max-h-[678px] absolute -bottom-32 lg:bottom-0 lg:right-[8%]"
+          >
+            <div className="text-center mb-4">
+              <p className="text-sm text-white/80">
+                Basé à <span className="text-accent font-semibold">Paris, France</span> (GMT+2)
+              </p>
+            </div>
+            <Avatar />
+          </motion.div>
 
           {/* btn */}
           <div className="flex justify-center xl:hidden relative">

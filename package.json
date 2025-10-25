@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "author": {
-    "name": "Sanidhya Kumar Verma",
-    "email": "sanidhya.verma12345@gmail.com",
-    "url": "https://github.com/sanidhyy"
+    "name": "Maxime Morellon",
+    "email": "contact@maxime-morellon.com",
+    "url": "https://github.com/maxime-morellon"
   },
-  "description": "Ethan Smith is a Full-stack web developer with 10+ years of experience.",
+  "description": "Portfolio de développeur Full-Stack avec 7 ans d'expérience, spécialisé en React, Next.js et Java.",
   "keywords": [
     "react",
     "next",

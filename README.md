@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-# Modern Portfolio using Next.js 16 and Framer Motion
+# Maxime Morellon | Portfolio - Next.js 16 et Framer Motion
 
 ![Modern Portfolio using Next.js and Framer Motion](/.github/images/img_main.png "Modern Portfolio using Next.js and Framer Motion")
 
@@ -75,9 +75,40 @@ modern-portfolio/
 
 2. Clone this repository to your local computer.
 
-3. Open terminal in root directory. Run `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps`.
+3. Open terminal in root directory. Run `npm install` or `yarn install`.
 
 4. Now app is fully configured 👍 and you can start using this app using `npm run dev` or `yarn dev`.
+
+## :person: À Propos
+
+Titulaire d'une licence en mathématiques et informatique avec Master 1 en développement logiciel à Toulouse et Master UX/UI à l'ENAC.
+
+### Expérience Professionnelle
+
+**2018-2019** : Développeur back-end Java chez Capgemini (projet IoT)
+
+**2019-2020** : Développeur front-end React
+
+**2020-2021** : Développeur Angular/Java pour le ministère de la Défense
+
+**2021-2022** : Développeur senior React/Java pour le ministère de la Défense
+
+**2022-2024** : Développeur senior React/Java pour le ministère de l'Intérieur
+- Interface pour candidats au permis de conduire (taux d'accessibilité : 83%)
+
+**2024-2025** : CTO chez Davancorp
+- Stratégie technologique et optimisation des processus
+- Déploiement d'outils internes (CRM, workflows)
+- Formation d'équipes techniques
+- Spécialisation IA et prompt engineering
+
+### Compétences Techniques
+
+- **Front-end** : React, Next.js, TypeScript, Tailwind CSS, Framer Motion
+- **Back-end** : Java, Spring Boot, Node.js, PostgreSQL
+- **DevOps** : Docker, CI/CD, Make, n8n
+- **IA** : Intelligence artificielle, VibeCoding, prompt engineering
+- **Outils** : Git, GitHub, VS Code, Jira
 
 ## :camera: Screenshots:
 

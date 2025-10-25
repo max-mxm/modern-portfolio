@@ -16,19 +16,20 @@ const About = () => {
             exit="hidden"
             className="h2"
           >
-            Captivating <span className="text-accent">stories</span> birth magnificent designs.
+            Maxime <span className="text-accent">Morellon</span> - Développeur Full-Stack
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0"
+            className="max-w-[600px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0 text-sm xl:text-base"
           >
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate,
-            exercitationem harum, quia nulla temporibus deleniti libero veniam
-            vero beatae numquam ducimus illum ab similique ipsam tempore fugit
-            quod laudantium debitis.
+            Développeur Full-Stack avec 7 ans d'expérience, spécialisé en React, Next.js et Java.
+            
+            Expert en développement front-end et back-end, avec une solide expérience en architecture logicielle et gestion de projet technique.
+            
+            Actuellement CTO chez Davancorp, responsable de la stratégie technologique et de l'optimisation des processus.
           </motion.p>
           {/* counters */}
           <motion.div
@@ -40,26 +41,26 @@ const About = () => {
           >
             <div>
               <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">10</span>+
+                <span className="text-[50px]">7</span>+
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                Years of experience
+                Années d'expérience
               </div>
             </div>
             <div>
               <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">250</span>+
+                <span className="text-[50px]">50</span>+
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                Satisfied clients
+                Projets livrés
               </div>
             </div>
             <div>
               <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">650</span>+
+                <span className="text-[50px]">83</span>%
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                Finished projects
+                Taux d'accessibilité
               </div>
             </div>
           </motion.div>
