@@ -22,8 +22,14 @@ const Home = () => {
             exit="hidden"
             className="h1"
           >
-            Maxime <span className="text-accent">Morellon</span>
+            <span itemProp="name">Maxime <span className="text-accent">Morellon</span></span>
+            <div className="text-left mb-4">
+              <p className="text-sm text-white/80" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                Basé à <span className="text-accent font-semibold" itemProp="addressLocality">Paris, France</span> (GMT+2)
+              </p>
+            </div>
           </motion.h1>
+                      
 
           {/* subtitle */}
           <motion.h2
@@ -32,8 +38,9 @@ const Home = () => {
             animate="show"
             exit="hidden"
             className="h3 mb-4"
+            itemProp="jobTitle"
           >
-            Développeur Full-Stack
+            Développeur Senior Front-end / Automatisation & IA
           </motion.h2>
           <motion.p
             variants={fadeIn("down", 0.3)}
@@ -41,10 +48,11 @@ const Home = () => {
             animate="show"
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
+            itemProp="description"
           >
-            7 ans d'expérience en développement web, spécialisé en React, Next.js et Java.
-            Expert en développement front-end et back-end, avec une solide expérience en architecture logicielle
-            et gestion de projet technique.
+            7 ans d'expérience en développement web, spécialisé en React, Next.js, automatisation et Java.
+            Expert en développement front-end senior et back-end, avec une solide expérience en architecture logicielle,
+            automatisation des processus et gestion de projet technique.
           </motion.p>
           <motion.div
             variants={fadeIn("up", 0.5)}
@@ -54,12 +62,8 @@ const Home = () => {
             transition={{ duration: 1, ease: "easeInOut" }}
             className="w-full h-full max-w-[737px] max-h-[678px] absolute -bottom-32 lg:bottom-0 lg:right-[8%]"
           >
-            <div className="text-center mb-4">
-              <p className="text-sm text-white/80">
-                Basé à <span className="text-accent font-semibold">Paris, France</span> (GMT+2)
-              </p>
-            </div>
-            <Avatar />
+
+            <Avatar /> 
           </motion.div>
 
           {/* btn */}

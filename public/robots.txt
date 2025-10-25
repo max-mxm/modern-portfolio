@@ -1,0 +1,20 @@
+# robots.txt pour Maxime Morellon Portfolio
+# Optimisé pour l'indexation SEO
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://maxime-morellon.dev/sitemap.xml
+
+# Autoriser l'exploration de toutes les ressources
+Allow: /about
+Allow: /work
+Allow: /services
+Allow: /testimonials
+Allow: /contact
+
+# Bloquer les fichiers système et de configuration
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /node_modules/

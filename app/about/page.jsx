@@ -16,7 +16,7 @@ const About = () => {
             exit="hidden"
             className="h2"
           >
-            Maxime <span className="text-accent">Morellon</span> - Développeur Full-Stack
+          <span className="text-accent">Développeur</span> Senior Front-end
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
@@ -25,11 +25,11 @@ const About = () => {
             exit="hidden"
             className="max-w-[600px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0 text-sm xl:text-base"
           >
-            Développeur Full-Stack avec 7 ans d'expérience, spécialisé en React, Next.js et Java.
-            
-            Expert en développement front-end et back-end, avec une solide expérience en architecture logicielle et gestion de projet technique.
-            
-            Actuellement CTO chez Davancorp, responsable de la stratégie technologique et de l'optimisation des processus.
+            Développeur Senior Full-Stack avec 7 ans d'expérience, spécialisé en React, Next.js, automatisation et Java.
+
+            Expert en développement front-end senior et back-end, avec une solide expérience en architecture logicielle, automatisation des processus et gestion de projet technique.
+
+            Actuellement CTO chez Davancorp, responsable de la stratégie technologique, de l'automatisation des processus et de l'optimisation des workflows.
           </motion.p>
           {/* counters */}
           <motion.div
