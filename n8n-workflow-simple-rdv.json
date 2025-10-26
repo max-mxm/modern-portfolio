@@ -1,0 +1,266 @@
+{
+  "name": "Portfolio Contact - Simple Human-in-the-Loop",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolio-contact",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://maxime-morellon.dev,http://localhost:3000"
+        }
+      },
+      "id": "webhook-reception",
+      "name": "1. Webhook - Réception Formulaire",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 400],
+      "webhookId": "portfolio-contact-webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"success\": true, \"message\": \"Message reçu avec succès\"}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond-webhook",
+      "name": "2. Réponse Immédiate au Site",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extraire les données du formulaire\nconst body = $input.first().json.body;\n\n// Créer un ID unique pour ce contact\nconst contactId = `contact_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;\n\n// Formater le message Discord avec tout le contenu\nconst discordMessage = `# 📬 **NOUVELLE DEMANDE DE CONTACT**\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n## 👤 **Informations du Contact**\\n\\n**Nom :** ${body.name}\\n**Email :** ${body.email}\\n**Sujet :** ${body.subject}\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n## 💬 **Message Reçu**\\n\\n\\`\\`\\`\\n${body.message}\\n\\`\\`\\`\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n## 📊 **Métadonnées**\\n\\n⏰ **Date de réception :** ${new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}\\n🆔 **ID du contact :** \\`${contactId}\\`\\n🌐 **Source :** Portfolio Contact Form\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n## 🎯 **ACTION REQUISE**\\n\\n**Souhaitez-vous envoyer un email pour proposer un rendez-vous ?**\\n\\n> Pour approuver cette demande et envoyer vos coordonnées avec une proposition de rendez-vous, utilisez le webhook suivant :\\n\\n**✅ APPROUVER :** Appelez le webhook d'approbation avec \\`approved=yes\\`\\n**❌ REJETER :** Appelez le webhook d'approbation avec \\`approved=no\\`\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;\n\nreturn {\n  json: {\n    contactId: contactId,\n    contactName: body.name,\n    contactEmail: body.email,\n    contactSubject: body.subject,\n    contactMessage: body.message,\n    contactTimestamp: new Date().toISOString(),\n    discordMessage: discordMessage,\n    antiSpam: body.antiSpam || {}\n  }\n};"
+      },
+      "id": "prepare-data",
+      "name": "3. Préparer les Données",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.DISCORD_WEBHOOK_URL}}",
+        "authentication": "none",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "={{$json.discordMessage}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "discord-notification",
+      "name": "4. Notification Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "mode": "webhook",
+        "webhookSuffix": "={{$json.contactId}}"
+      },
+      "id": "wait-for-approval",
+      "name": "5. Attendre Validation (Human-in-the-Loop)",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [1050, 400],
+      "webhookId": "wait-approval-webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.body.approved}}",
+              "operation": "equals",
+              "value2": "yes"
+            }
+          ]
+        }
+      },
+      "id": "check-approval",
+      "name": "6. Vérifier si Approuvé",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1250, 400]
+    },
+    {
+      "parameters": {
+        "fromEmail": "morellon.maxime@gmail.com",
+        "toEmail": "={{$json.contactEmail}}",
+        "subject": "=Re: {{$json.contactSubject}} - Rendez-vous avec Maxime Morellon",
+        "emailType": "html",
+        "message": "=<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <style>\n    body {\n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;\n      line-height: 1.6;\n      color: #333;\n      margin: 0;\n      padding: 0;\n      background-color: #f5f5f5;\n    }\n    .container {\n      max-width: 600px;\n      margin: 20px auto;\n      background: white;\n      border-radius: 12px;\n      overflow: hidden;\n      box-shadow: 0 4px 6px rgba(0,0,0,0.1);\n    }\n    .header {\n      background: linear-gradient(135deg, #131424 0%, #1a1b2e 100%);\n      color: white;\n      padding: 40px 30px;\n      text-align: center;\n    }\n    .header h1 {\n      margin: 0 0 10px 0;\n      font-size: 28px;\n      color: #ffffff;\n    }\n    .header p {\n      margin: 0;\n      font-size: 14px;\n      color: #a0a0a0;\n    }\n    .content {\n      padding: 40px 30px;\n    }\n    .greeting {\n      font-size: 16px;\n      margin-bottom: 20px;\n    }\n    .meeting-box {\n      background: #f8f9fa;\n      border-left: 4px solid #F13024;\n      padding: 25px;\n      margin: 30px 0;\n      border-radius: 8px;\n    }\n    .meeting-box h2 {\n      margin: 0 0 20px 0;\n      font-size: 20px;\n      color: #131424;\n    }\n    .meeting-box p {\n      margin: 10px 0;\n      color: #555;\n    }\n    .contact-box {\n      background: #fff;\n      border: 2px solid #f0f0f0;\n      padding: 20px;\n      margin: 20px 0;\n      border-radius: 8px;\n    }\n    .contact-box h3 {\n      margin: 0 0 15px 0;\n      font-size: 16px;\n      color: #131424;\n    }\n    .contact-item {\n      margin: 12px 0;\n      display: flex;\n      align-items: center;\n      font-size: 14px;\n    }\n    .contact-label {\n      font-weight: 600;\n      color: #F13024;\n      min-width: 100px;\n    }\n    .contact-value a {\n      color: #F13024;\n      text-decoration: none;\n    }\n    .contact-value a:hover {\n      text-decoration: underline;\n    }\n    .cta-button {\n      display: inline-block;\n      background: #F13024;\n      color: white;\n      padding: 15px 30px;\n      border-radius: 8px;\n      text-decoration: none;\n      font-weight: 600;\n      margin: 20px 0;\n      text-align: center;\n    }\n    .cta-button:hover {\n      background: #d12a1f;\n    }\n    .divider {\n      height: 1px;\n      background: #e0e0e0;\n      margin: 25px 0;\n    }\n    .signature {\n      margin-top: 30px;\n      padding-top: 20px;\n      border-top: 2px solid #f0f0f0;\n    }\n    .signature strong {\n      font-size: 16px;\n      color: #131424;\n    }\n    .signature p {\n      margin: 5px 0;\n      color: #666;\n      font-size: 13px;\n    }\n    .footer {\n      background: #f8f9fa;\n      padding: 20px;\n      text-align: center;\n      color: #999;\n      font-size: 12px;\n    }\n    @media only screen and (max-width: 600px) {\n      .container {\n        margin: 0;\n        border-radius: 0;\n      }\n      .header, .content {\n        padding: 30px 20px;\n      }\n      .contact-item {\n        flex-direction: column;\n        align-items: flex-start;\n      }\n      .contact-label {\n        margin-bottom: 5px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>Maxime Morellon</h1>\n      <p>Développeur Senior Front-end | Automatisation & IA</p>\n    </div>\n    \n    <div class=\"content\">\n      <div class=\"greeting\">\n        <p>Bonjour <strong>{{$json.contactName}}</strong>,</p>\n      </div>\n      \n      <p>Merci beaucoup pour votre message concernant : <strong>{{$json.contactSubject}}</strong></p>\n      \n      <p>J'ai bien pris connaissance de votre demande et je serais ravi d'échanger avec vous pour discuter de votre projet et voir comment je peux vous accompagner.</p>\n      \n      <div class=\"meeting-box\">\n        <h2>📅 Proposition de Rendez-vous</h2>\n        <p>Je vous propose de planifier un premier échange téléphonique ou visio pour mieux comprendre vos besoins et vous présenter mon approche.</p>\n        \n        <p><strong>Mes disponibilités :</strong></p>\n        <ul>\n          <li>Du lundi au vendredi, entre 9h et 18h</li>\n          <li>Créneaux de 30 minutes à 1 heure selon vos besoins</li>\n          <li>Téléphone, Google Meet, ou Zoom selon votre préférence</li>\n        </ul>\n      </div>\n      \n      <div class=\"contact-box\">\n        <h3>📞 Mes Coordonnées</h3>\n        \n        <div class=\"contact-item\">\n          <span class=\"contact-label\">📧 Email :</span>\n          <span class=\"contact-value\">\n            <a href=\"mailto:morellon.maxime@gmail.com\">morellon.maxime@gmail.com</a>\n          </span>\n        </div>\n        \n        <div class=\"contact-item\">\n          <span class=\"contact-label\">📱 Téléphone :</span>\n          <span class=\"contact-value\">+33 X XX XX XX XX</span>\n        </div>\n        \n        <div class=\"divider\"></div>\n        \n        <div class=\"contact-item\">\n          <span class=\"contact-label\">💼 LinkedIn :</span>\n          <span class=\"contact-value\">\n            <a href=\"https://linkedin.com/in/maxime-morellon\" target=\"_blank\">linkedin.com/in/maxime-morellon</a>\n          </span>\n        </div>\n        \n        <div class=\"contact-item\">\n          <span class=\"contact-label\">🌐 Portfolio :</span>\n          <span class=\"contact-value\">\n            <a href=\"https://maxime-morellon.dev\" target=\"_blank\">maxime-morellon.dev</a>\n          </span>\n        </div>\n      </div>\n      \n      <p><strong>Comment procéder ?</strong></p>\n      <p>Répondez simplement à cet email en me proposant 2-3 créneaux qui vous conviennent, et je confirmerai le rendez-vous dans les plus brefs délais.</p>\n      \n      <p>Vous pouvez également me contacter directement par téléphone si vous préférez une prise de contact plus rapide.</p>\n      \n      <div class=\"signature\">\n        <p>Au plaisir d'échanger avec vous très prochainement !</p>\n        <br>\n        <strong>Cordialement,</strong>\n        <p><strong>Maxime Morellon</strong></p>\n        <p>Développeur Senior Front-end</p>\n        <p>Spécialiste Automatisation & IA</p>\n        <p style=\"margin-top: 10px; font-size: 12px; color: #999;\">💚 Disponible en freelance dès décembre 2025</p>\n      </div>\n    </div>\n    \n    <div class=\"footer\">\n      <p>Ce message a été envoyé en réponse à votre demande de contact via mon portfolio.</p>\n      <p style=\"margin-top: 5px;\">© 2025 Maxime Morellon - Tous droits réservés</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "options": {
+          "fromName": "Maxime Morellon"
+        }
+      },
+      "id": "send-email-gmail",
+      "name": "7. Envoyer Email Rendez-vous (Gmail)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1450, 300],
+      "credentials": {
+        "smtp": {
+          "id": "gmail-smtp-credentials",
+          "name": "Gmail SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.DISCORD_WEBHOOK_URL}}",
+        "authentication": "none",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "=✅ **EMAIL ENVOYÉ AVEC SUCCÈS !**\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n**Destinataire :** {{$json.contactName}}\\n**Email :** {{$json.contactEmail}}\\n**Sujet :** Re: {{$json.contactSubject}}\\n\\n📧 **Contenu envoyé :**\\n- Proposition de rendez-vous\\n- Vos coordonnées complètes\\n- Demande de disponibilités\\n\\n⏰ **Envoyé le :** {{$now.toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}}\\n🆔 **ID :** {{$json.contactId}}\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n💡 **Prochaine étape :** Attendre la réponse du contact avec ses disponibilités."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "discord-success",
+      "name": "8. Discord - Confirmation Envoi",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1650, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.DISCORD_WEBHOOK_URL}}",
+        "authentication": "none",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "content",
+              "value": "=❌ **DEMANDE REJETÉE**\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\n**Contact :** {{$json.contactName}}\\n**Email :** {{$json.contactEmail}}\\n**Sujet :** {{$json.contactSubject}}\\n\\n🚫 **Action :** Vous avez choisi de ne pas donner suite à cette demande.\\n\\n⏰ **Rejeté le :** {{$now.toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}}\\n🆔 **ID :** {{$json.contactId}}\\n\\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\\n\\nℹ️ Aucun email n'a été envoyé."
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "discord-rejected",
+      "name": "9. Discord - Demande Rejetée",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1450, 500]
+    }
+  ],
+  "connections": {
+    "1. Webhook - Réception Formulaire": {
+      "main": [
+        [
+          {
+            "node": "2. Réponse Immédiate au Site",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "3. Préparer les Données",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "3. Préparer les Données": {
+      "main": [
+        [
+          {
+            "node": "4. Notification Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "4. Notification Discord": {
+      "main": [
+        [
+          {
+            "node": "5. Attendre Validation (Human-in-the-Loop)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "5. Attendre Validation (Human-in-the-Loop)": {
+      "main": [
+        [
+          {
+            "node": "6. Vérifier si Approuvé",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "6. Vérifier si Approuvé": {
+      "main": [
+        [
+          {
+            "node": "7. Envoyer Email Rendez-vous (Gmail)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "9. Discord - Demande Rejetée",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "7. Envoyer Email Rendez-vous (Gmail)": {
+      "main": [
+        [
+          {
+            "node": "8. Discord - Confirmation Envoi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-26T14:00:00.000Z",
+  "versionId": "1"
+}
