@@ -23,7 +23,7 @@ const Home = () => {
             className="h1"
           >
             <span itemProp="name">Maxime <span className="text-accent">Morellon</span></span>
-            <div className="text-left mb-4">
+            <div className="xl:text-left  mb-4">
               <p className="text-sm text-white/80" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                 Basé à <span className="text-accent font-semibold" itemProp="addressLocality">Paris, France</span> (GMT+2)
               </p>
@@ -37,7 +37,7 @@ const Home = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h3 mb-4"
+            className="h3 mb-4 text-lg"
             itemProp="jobTitle"
           >
             Développeur Senior Front-end / Automatisation & IA
@@ -48,11 +48,10 @@ const Home = () => {
             animate="show"
             exit="hidden"
             className="max-w-sm xl:max-w-xl mx-auto xl:mx-0 mb-10 xl:mb-16"
-            itemProp="description"
           >
-            7 ans d'expérience en développement web, spécialisé en React, Next.js, automatisation et Java.
-            Expert en développement front-end senior et back-end, avec une solide expérience en architecture logicielle,
-            automatisation des processus et gestion de projet technique.
+            7 ans d'expérience en développement web, spécialisé en React, Next.js et Java.
+            Expert en développement front-end et back-end, avec une solide expérience en architecture logicielle
+            et gestion de projet technique.
           </motion.p>
           <motion.div
             variants={fadeIn("up", 0.5)}
