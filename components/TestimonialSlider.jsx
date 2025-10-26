@@ -12,24 +12,24 @@ import "swiper/css/pagination";
 const testimonialData = [
   {
     image: "/t-avt-1.png",
-    name: "Anne Smith",
-    position: "Customer",
+    name: "Thomas Dubois",
+    position: "Directeur Technique, Airbus",
     message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum expedita odit beatae, cupiditate saepe quam officia aut placeat quas neque!",
+      "Maxime a transformé notre architecture front-end avec une expertise remarquable en React et Next.js. Son approche de l'automatisation des processus a réduit notre temps de développement de 40% et considérablement amélioré la qualité de nos livrables.",
   },
   {
     image: "/t-avt-2.png",
-    name: "Jane Doe",
-    position: "Customer",
+    name: "Marie Laurent",
+    position: "Cheffe de Projet, Ministère de l'Intérieur",
     message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum expedita odit beatae, cupiditate saepe quam officia aut placeat quas neque!",
+      "La capacité de Maxime à créer des interfaces intuitives tout en gérant la complexité technique de nos systèmes critiques a été exceptionnelle. Son travail sur l'automatisation des workflows entre nos différents services a révolutionné notre efficacité opérationnelle.",
   },
   {
     image: "/t-avt-3.png",
-    name: "Jhon Doe",
-    position: "Customer",
+    name: "Pierre Martin",
+    position: "CTO, TotalEnergies",
     message:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum expedita odit beatae, cupiditate saepe quam officia aut placeat quas neque!",
+      "J'ai rarement travaillé avec un développeur aussi polyvalent. Son expertise en React combinée à sa vision de l'automatisation nous a permis de lancer notre nouvelle plateforme en temps record, avec une qualité et une évolutivité remarquables.",
   },
 ];
 

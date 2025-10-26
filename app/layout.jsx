@@ -2,6 +2,7 @@ import { Sora } from "next/font/google";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import TopLeftImg from "../components/TopLeftImg";
+import Footer from "../components/Footer";
 import "../styles/globals.css";
 
 // setup font
@@ -147,6 +148,7 @@ export default function RootLayout({ children }) {
         <Nav />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

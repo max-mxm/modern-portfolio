@@ -21,7 +21,7 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/services`,
+      url: `${baseUrl}/skills`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

@@ -4,6 +4,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
 import TopLeftImg from "../components/TopLeftImg";
+import Footer from "../components/Footer";
 
 // setup font
 const sora = Sora({
@@ -38,6 +39,9 @@ const Layout = ({ children }) => {
 
       {/* main content */}
       {children}
+
+      {/* footer */}
+      <Footer />
     </main>
   );
 };

@@ -31,6 +31,22 @@ const Home = () => {
           </motion.h1>
                       
 
+          {/* availability */}
+          <div className="flex justify-center xl:justify-start mb-4">
+            <motion.div
+              variants={fadeIn("down", 0.25)}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border-2 border-green-500 rounded-full"
+            >
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+              <p className="text-sm text-green-500 font-semibold">
+                Disponible en freelance dès décembre 2025
+              </p>
+            </motion.div>
+          </div>
+
           {/* subtitle */}
           <motion.h2
             variants={fadeIn("down", 0.3)}
@@ -42,8 +58,9 @@ const Home = () => {
           >
             Développeur Senior Front-end / Automatisation & IA
           </motion.h2>
+
           <motion.p
-            variants={fadeIn("down", 0.3)}
+            variants={fadeIn("down", 0.4)}
             initial="hidden"
             animate="show"
             exit="hidden"

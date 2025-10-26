@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ServiceSlider from "../../components/ServiceSlider";
+import SkillsSlider from "../../components/SkillsSlider";
 import { fadeIn } from "../../variants";
 
-const Services = () => {
+const Skills = () => {
   return (
     <div className="h-full bg-primary/30 py-36 flex items-center">
       <div className="container mx-auto">
@@ -15,7 +15,7 @@ const Services = () => {
           exit="hidden"
           className="h2 text-center mb-8 xl:mb-0"
         >
-          My Services <span className="text-accent">.</span>
+          My Skills <span className="text-accent">.</span>
         </motion.h2>
         {/* slider */}
         <motion.div
@@ -23,13 +23,13 @@ const Services = () => {
           initial="hidden"
           animate="show"
           exit="hidden"
-          className="w-full xl:max-w-[65%] mx-auto xl:mt-12"
+          className="w-full xl:max-w-[90%] mx-auto xl:mt-12"
         >
-          <ServiceSlider />
+          <SkillsSlider />
         </motion.div>
       </div>
     </div>
   );
 };
 
-export default Services;
+export default Skills;

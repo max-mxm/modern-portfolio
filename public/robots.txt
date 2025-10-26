@@ -10,7 +10,7 @@ Sitemap: https://maxime-morellon.dev/sitemap.xml
 # Autoriser l'exploration de toutes les ressources
 Allow: /about
 Allow: /work
-Allow: /services
+Allow: /skills
 Allow: /testimonials
 Allow: /contact
 

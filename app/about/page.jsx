@@ -16,7 +16,7 @@ const About = () => {
             exit="hidden"
             className="h2"
           >
-          <span className="text-accent">Développeur</span> Senior Front-end
+          <span className="text-accent">Expert</span> Front-end
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
@@ -26,41 +26,50 @@ const About = () => {
             className="max-w-[600px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0 text-sm xl:text-base"
           >
             Développeur Senior Full-Stack avec 7 ans d'expérience, spécialisé en React, Next.js, automatisation et Java.
-
-            Expert en développement front-end senior et back-end, avec une solide expérience en architecture logicielle, automatisation des processus et gestion de projet technique.
-
-            Actuellement CTO chez Davancorp, responsable de la stratégie technologique, de l'automatisation des processus et de l'optimisation des workflows.
+            <br /><br />
+        
+            <br />
+            Ma vision est de concevoir des systèmes intelligents qui automatisent et optimisent l'efficacité des équipes. Expert React, passionné par l'IA, l'automatisation et sensible à l'UX/UI, je crée des interfaces intuitives et des solutions innovantes pour la productivité humaine. J'ai mis cette expertise au service de projets critiques pour le Ministère de l'Intérieur, le Ministère de la Défense, Airbus et Total.
           </motion.p>
+
           {/* counters */}
           <motion.div
             variants={fadeIn("right", 0.6)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="flex gap-x-6 xl:gap-x-10 mb-12"
+            className="flex justify-center xl:justify-start gap-x-6 xl:gap-x-10 mb-12"
           >
             <div>
-              <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">7</span>+
+              <div className="text-3xl xl:text-[64px] font-extrabold text-accent mb-2">
+                <span className="text-3xl xl:text-[50px]">7</span>+
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
                 Années d'expérience
               </div>
             </div>
             <div>
-              <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">50</span>+
+              <div className="text-3xl xl:text-[64px] font-extrabold text-accent mb-2">
+                <span className="text-3xl xl:text-[50px]">1,3</span>m+
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                Projets livrés
+               utilisateurs actifs (ministères)
               </div>
             </div>
             <div>
-              <div className="text-4xl xl:text-[64px] font-extrabold text-accent mb-2">
-                <span className="text-[50px]">83</span>%
+              <div className="text-3xl xl:text-[64px] font-extrabold text-accent mb-2">
+                <span className="text-3xl xl:text-[50px]">-56</span>%
               </div>
               <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
-                Taux d'accessibilité
+                Temps process internes
+              </div>
+            </div>
+            <div>
+              <div className="text-3xl xl:text-[64px] font-extrabold text-accent mb-2">
+                <span className="text-3xl xl:text-[50px]">20</span>+
+              </div>
+              <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">
+                Workflows automatisés en prod
               </div>
             </div>
           </motion.div>
