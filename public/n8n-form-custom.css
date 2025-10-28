@@ -1,0 +1,394 @@
+/*
+  Style personnalisé pour l'iframe n8n Form
+  Adapté au design du portfolio moderne avec couleurs et typographie
+*/
+
+:root {
+  /* === TYPOGRAPHIE === */
+  --font-family: 'Sora', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 600;
+
+  /* Tailles de police */
+  --font-size-body: 14px;
+  --font-size-label: 14px;
+  --font-size-test-notice: 12px;
+  --font-size-input: 14px;
+  --font-size-header: 24px;
+  --font-size-paragraph: 14px;
+  --font-size-link: 13px;
+  --font-size-error: 12px;
+  --font-size-html-h1: 32px;
+  --font-size-html-h2: 24px;
+  --font-size-html-h3: 18px;
+  --font-size-html-h4: 16px;
+  --font-size-html-h5: 14px;
+  --font-size-html-h6: 12px;
+  --font-size-subheader: 14px;
+
+  /* === COULEURS === */
+  /* Couleurs principales du portfolio */
+  --color-primary: #131424;
+  --color-accent: #F13024;
+
+  /* Arrière-plans */
+  --color-background: rgba(19, 20, 36, 0.3);
+  --color-card-bg: rgba(255, 255, 255, 0.05);
+  --color-card-border: rgba(255, 255, 255, 0.1);
+  --color-card-shadow: rgba(241, 48, 36, 0.1);
+
+  /* Test notice */
+  --color-test-notice-text: #F13024;
+  --color-test-notice-bg: rgba(241, 48, 36, 0.05);
+  --color-test-notice-border: rgba(241, 48, 36, 0.2);
+
+  /* Textes */
+  --color-header: #ffffff;
+  --color-label: rgba(255, 255, 255, 0.9);
+  --color-html-text: rgba(255, 255, 255, 0.8);
+  --color-header-subtext: rgba(255, 255, 255, 0.6);
+  --color-link: rgba(255, 255, 255, 0.7);
+  --color-html-link: #F13024;
+
+  /* Inputs */
+  --color-input-border: rgba(255, 255, 255, 0.2);
+  --color-input-text: rgba(255, 255, 255, 0.9);
+  --color-focus-border: #F13024;
+
+  /* Boutons */
+  --color-submit-btn-bg: #F13024;
+  --color-submit-btn-text: #ffffff;
+  --color-clear-button-bg: rgba(255, 255, 255, 0.1);
+
+  /* États */
+  --color-error: #ff4444;
+  --color-required: #F13024;
+
+  /* === BORDER RADIUS === */
+  --border-radius-card: 12px;
+  --border-radius-input: 8px;
+  --border-radius-clear-btn: 50%;
+  --card-border-radius: 12px;
+
+  /* === ESPACEMENT === */
+  --padding-container-top: 30px;
+  --padding-card: 30px;
+  --padding-test-notice-vertical: 15px;
+  --padding-test-notice-horizontal: 25px;
+  --margin-bottom-card: 20px;
+  --padding-form-input: 14px;
+  --card-padding: 30px;
+  --card-margin-bottom: 20px;
+
+  /* === DIMENSIONS === */
+  --container-width: 600px;
+  --submit-btn-height: 52px;
+  --checkbox-size: 20px;
+
+  /* === AUTRES === */
+  --box-shadow-card: 0px 6px 20px 0px var(--color-card-shadow);
+  --opacity-placeholder: 0.5;
+}
+
+/* === STYLES GLOBAUX === */
+* {
+  font-family: var(--font-family) !important;
+}
+
+body {
+  background: transparent !important;
+  color: var(--color-html-text) !important;
+}
+
+/* === CONTAINER PRINCIPAL === */
+.container {
+  max-width: var(--container-width) !important;
+  margin: 0 auto !important;
+  padding-top: var(--padding-container-top) !important;
+}
+
+/* === CARTES === */
+.card {
+  background: var(--color-card-bg) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid var(--color-card-border) !important;
+  border-radius: var(--card-border-radius) !important;
+  padding: var(--card-padding) !important;
+  margin-bottom: var(--card-margin-bottom) !important;
+  box-shadow: var(--box-shadow-card) !important;
+  transition: all 0.3s ease !important;
+}
+
+.card:hover {
+  border-color: rgba(241, 48, 36, 0.3) !important;
+  box-shadow: 0px 8px 24px 0px rgba(241, 48, 36, 0.15) !important;
+}
+
+/* === NOTICE DE TEST === */
+.test-notice {
+  background: var(--color-test-notice-bg) !important;
+  border: 1px solid var(--color-test-notice-border) !important;
+  color: var(--color-test-notice-text) !important;
+  padding: var(--padding-test-notice-vertical) var(--padding-test-notice-horizontal) !important;
+  border-radius: var(--border-radius-card) !important;
+  font-size: var(--font-size-test-notice) !important;
+  margin-bottom: 20px !important;
+}
+
+/* === HEADERS === */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-header) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+h1 { font-size: var(--font-size-html-h1) !important; }
+h2 { font-size: var(--font-size-html-h2) !important; }
+h3 { font-size: var(--font-size-html-h3) !important; }
+h4 { font-size: var(--font-size-html-h4) !important; }
+h5 { font-size: var(--font-size-html-h5) !important; }
+h6 { font-size: var(--font-size-html-h6) !important; }
+
+/* === LABELS === */
+label {
+  color: var(--color-label) !important;
+  font-size: var(--font-size-label) !important;
+  font-weight: var(--font-weight-bold) !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+label .required {
+  color: var(--color-required) !important;
+}
+
+/* === INPUTS === */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+textarea,
+select {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--color-input-border) !important;
+  border-radius: var(--border-radius-input) !important;
+  padding: var(--padding-form-input) !important;
+  font-size: var(--font-size-input) !important;
+  color: var(--color-input-text) !important;
+  width: 100% !important;
+  transition: all 0.3s ease !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-input-text) !important;
+  opacity: var(--opacity-placeholder) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: var(--color-focus-border) !important;
+  box-shadow: 0 0 0 2px rgba(241, 48, 36, 0.1) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* === CHECKBOX ET RADIO === */
+input[type="checkbox"],
+input[type="radio"] {
+  width: var(--checkbox-size) !important;
+  height: var(--checkbox-size) !important;
+  border: 2px solid var(--color-input-border) !important;
+  cursor: pointer !important;
+  accent-color: var(--color-accent) !important;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+}
+
+/* === BOUTON SUBMIT === */
+button[type="submit"],
+.submit-button {
+  background: var(--color-submit-btn-bg) !important;
+  color: var(--color-submit-btn-text) !important;
+  border: 2px solid var(--color-submit-btn-bg) !important;
+  border-radius: var(--border-radius-input) !important;
+  padding: 14px 32px !important;
+  font-size: var(--font-size-input) !important;
+  font-weight: var(--font-weight-bold) !important;
+  height: var(--submit-btn-height) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+button[type="submit"]:hover,
+.submit-button:hover {
+  background: transparent !important;
+  color: var(--color-submit-btn-bg) !important;
+  border-color: var(--color-submit-btn-bg) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(241, 48, 36, 0.3) !important;
+}
+
+button[type="submit"]:active,
+.submit-button:active {
+  transform: translateY(0) !important;
+}
+
+button[type="submit"]:disabled,
+.submit-button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* === BOUTON CLEAR === */
+.clear-button {
+  background: var(--color-clear-button-bg) !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--border-radius-clear-btn) !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.clear-button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+}
+
+/* === LIENS === */
+a {
+  color: var(--color-html-link) !important;
+  text-decoration: none !important;
+  font-size: var(--font-size-link) !important;
+  transition: all 0.2s ease !important;
+}
+
+a:hover {
+  color: var(--color-accent) !important;
+  text-decoration: underline !important;
+}
+
+/* === MESSAGES D'ERREUR === */
+.error-message,
+.field-error {
+  color: var(--color-error) !important;
+  font-size: var(--font-size-error) !important;
+  margin-top: 6px !important;
+  display: block !important;
+}
+
+input.error,
+textarea.error,
+select.error {
+  border-color: var(--color-error) !important;
+}
+
+/* === PARAGRAPHES === */
+p {
+  color: var(--color-html-text) !important;
+  font-size: var(--font-size-paragraph) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 12px !important;
+}
+
+/* === SUCCESS MESSAGE === */
+.success-message {
+  background: rgba(34, 197, 94, 0.1) !important;
+  border: 1px solid rgba(34, 197, 94, 0.3) !important;
+  color: #22c55e !important;
+  padding: 15px 20px !important;
+  border-radius: var(--border-radius-card) !important;
+  margin-top: 20px !important;
+}
+
+/* === LOADING STATE === */
+.loading {
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  :root {
+    --container-width: 100%;
+    --padding-card: 20px;
+    --font-size-header: 20px;
+    --font-size-html-h1: 26px;
+    --font-size-html-h2: 20px;
+  }
+
+  .container {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  button[type="submit"],
+  .submit-button {
+    padding: 12px 24px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.form-group,
+input,
+textarea,
+select,
+button {
+  animation: fadeIn 0.3s ease-out !important;
+}
+
+/* === SCROLLBAR PERSONNALISÉE === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(241, 48, 36, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* === FOCUS VISIBLE (ACCESSIBILITÉ) === */
+*:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+}

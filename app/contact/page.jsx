@@ -29,8 +29,8 @@ const Contact = () => {
   // Anti-spam : Détection d'interaction utilisateur
   const [userInteracted, setUserInteracted] = useState(false);
 
-  // URL du webhook n8n - À CONFIGURER
-  const WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL || "";
+  // URL du webhook n8n
+  const WEBHOOK_URL = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
 
   useEffect(() => {
     // Détection d'interaction utilisateur (mouvement de souris, toucher)
@@ -350,6 +350,27 @@ console.log("WEBHOOK_URL", WEBHOOK_URL)
               </span>
             </button>
           </motion.form>
+
+          {/* Iframe n8n form           <motion.div
+            variants={fadeIn("up", 0.6)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+            className="mt-12 w-full"
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+              <h3 className="text-xl font-medium text-white mb-4 text-center">
+                Formulaire de prise de rendez-vous
+              </h3>
+              <iframe
+                src="https://n8n.srv813148.hstgr.cloud/form-test/601e2edb-b834-4d1c-9b19-c1a72ce85c93"
+                className="w-full h-[600px] border-0 rounded-md"
+                title="Formulaire de prise de rendez-vous"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+              />
+            </div>
+          </motion.div>*/}
+
         </div>
       </div>
     </div>
