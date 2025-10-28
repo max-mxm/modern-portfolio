@@ -169,19 +169,19 @@ const WorkSlider = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 cursor-pointer"
               onClick={closeModal}
             />
 
             {/* Modal Content */}
-            <div className="fixed inset-0 z-50 overflow-y-auto">
+            <div className="fixed inset-0 z-50 overflow-y-auto pointer-events-none">
               <div className="flex min-h-full items-center justify-center p-4">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9, y: 20 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
                   transition={{ duration: 0.3, type: "spring" }}
-                  className="relative bg-[rgba(19,20,36,0.98)] backdrop-blur-xl rounded-2xl border-2 border-white/20 p-8 max-w-2xl w-full mx-auto shadow-2xl"
+                  className="relative bg-[rgba(19,20,36,0.98)] backdrop-blur-xl rounded-2xl border-2 border-white/20 p-8 max-w-2xl w-full mx-auto shadow-2xl pointer-events-auto"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Bouton fermer */}
@@ -207,7 +207,7 @@ const WorkSlider = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="text-lg font-bold text-accent">
+                    <div className="text-lg font-bold text-accent pr-14">
                       {selectedProject.year}
                     </div>
                   </div>

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
 import Toast from "../../components/Toast";
 
+const caracterLimit = 5000;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -63,9 +65,9 @@ const Contact = () => {
     return subject.trim().length >= 3;
   };
 
-  // Validation du message (au moins 10 caractères)
+  // Validation du message (au moins 10 caractères et maximum 10000)
   const validateMessage = (message) => {
-    return message.trim().length >= 10;
+    return message.trim().length >= 10 && message.length <= caracterLimit;
   };
 
   const handleChange = (e) => {
@@ -94,7 +96,9 @@ const Contact = () => {
         }
         break;
       case "message":
-        if (!validateMessage(value) && value.length > 0) {
+        if (value.length > caracterLimit) {
+          error = "Le message ne peut pas dépasser caracterLimit caractères";
+        } else if (!validateMessage(value) && value.length > 0) {
           error = "Le message doit contenir au moins 10 caractères";
         }
         break;
@@ -121,7 +125,9 @@ const Contact = () => {
       newErrors.subject = "Le sujet doit contenir au moins 3 caractères";
     }
 
-    if (!validateMessage(formData.message)) {
+    if (formData.message.length > caracterLimit) {
+      newErrors.message = "Le message ne peut pas dépasser 10000 caractères";
+    } else if (!validateMessage(formData.message)) {
       newErrors.message = "Le message doit contenir au moins 10 caractères";
     }
 
@@ -331,10 +337,16 @@ console.log("WEBHOOK_URL", WEBHOOK_URL)
                 onChange={handleChange}
                 disabled={status.loading}
                 rows="6"
+                maxLength={caracterLimit}
               ></textarea>
-              {errors.message && (
-                <p className="text-red-500 text-xs mt-1 ml-2">{errors.message}</p>
-              )}
+              <div className="flex justify-between items-center mt-1">
+                {errors.message && (
+                  <p className="text-red-500 text-xs ml-2">{errors.message}</p>
+                )}
+                <p className={`text-xs ml-2 ${formData.message.length > caracterLimit ? 'text-red-500' : 'text-gray-400'} ml-auto`}>
+                  {formData.message.length}/{ caracterLimit.toString() } caractères
+                </p>
+              </div>
             </div>
 
             <button
@@ -378,3 +390,4 @@ console.log("WEBHOOK_URL", WEBHOOK_URL)
 };
 
 export default Contact;
+
